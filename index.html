@@ -1,0 +1,890 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>My Webcrumbs Plugin</title>
+<!-- Added proper font/link imports -->
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+<style>@import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined);
+
+*,
+:after,
+:before {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x: ;
+  --tw-pan-y: ;
+  --tw-pinch-zoom: ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position: ;
+  --tw-gradient-via-position: ;
+  --tw-gradient-to-position: ;
+  --tw-ordinal: ;
+  --tw-slashed-zero: ;
+  --tw-numeric-figure: ;
+  --tw-numeric-spacing: ;
+  --tw-numeric-fraction: ;
+  --tw-ring-inset: ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgba(59, 130, 246, 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-drop-shadow: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
+  --tw-contain-size: ;
+  --tw-contain-layout: ;
+  --tw-contain-paint: ;
+  --tw-contain-style: ;
+}
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x: ;
+  --tw-pan-y: ;
+  --tw-pinch-zoom: ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position: ;
+  --tw-gradient-via-position: ;
+  --tw-gradient-to-position: ;
+  --tw-ordinal: ;
+  --tw-slashed-zero: ;
+  --tw-numeric-figure: ;
+  --tw-numeric-spacing: ;
+  --tw-numeric-fraction: ;
+  --tw-ring-inset: ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgba(59, 130, 246, 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-drop-shadow: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
+  --tw-contain-size: ;
+  --tw-contain-layout: ;
+  --tw-contain-paint: ;
+  --tw-contain-style: ;
+} /*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/
+*,
+:after,
+:before {
+  border: 0 solid #e5e7eb;
+  box-sizing: border-box;
+}
+:after,
+:before {
+  --tw-content: "";
+}
+:host,
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  font-family:
+    Open Sans,
+    ui-sans-serif,
+    system-ui,
+    sans-serif,
+    Apple Color Emoji,
+    Segoe UI Emoji,
+    Segoe UI Symbol,
+    Noto Color Emoji;
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  -moz-tab-size: 4;
+  tab-size: 4;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  line-height: inherit;
+  margin: 0;
+}
+hr {
+  border-top-width: 1px;
+  color: inherit;
+  height: 0;
+}
+abbr:where([title]) {
+  text-decoration: underline dotted;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+b,
+strong {
+  font-weight: bolder;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
+  font-feature-settings: normal;
+  font-size: 1em;
+  font-variation-settings: normal;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+table {
+  border-collapse: collapse;
+  border-color: inherit;
+  text-indent: 0;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font-family: inherit;
+  font-feature-settings: inherit;
+  font-size: 100%;
+  font-variation-settings: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+}
+button,
+select {
+  text-transform: none;
+}
+button,
+input:where([type="button"]),
+input:where([type="reset"]),
+input:where([type="submit"]) {
+  -webkit-appearance: button;
+  background-color: transparent;
+  background-image: none;
+}
+:-moz-focusring {
+  outline: auto;
+}
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+progress {
+  vertical-align: baseline;
+}
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+summary {
+  display: list-item;
+}
+blockquote,
+dd,
+dl,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+pre {
+  margin: 0;
+}
+fieldset {
+  margin: 0;
+}
+fieldset,
+legend {
+  padding: 0;
+}
+menu,
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+dialog {
+  padding: 0;
+}
+textarea {
+  resize: vertical;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+[role="button"],
+button {
+  cursor: pointer;
+}
+:disabled {
+  cursor: default;
+}
+audio,
+canvas,
+embed,
+iframe,
+img,
+object,
+svg,
+video {
+  display: block;
+  vertical-align: middle;
+}
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+[hidden]:where(:not([hidden="until-found"])) {
+  display: none;
+}
+#webcrumbs .relative {
+  position: relative;
+}
+#webcrumbs .mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+#webcrumbs .mb-1 {
+  margin-bottom: 4px;
+}
+#webcrumbs .mb-12 {
+  margin-bottom: 48px;
+}
+#webcrumbs .mb-2 {
+  margin-bottom: 8px;
+}
+#webcrumbs .mb-3 {
+  margin-bottom: 12px;
+}
+#webcrumbs .mb-4 {
+  margin-bottom: 16px;
+}
+#webcrumbs .mb-6 {
+  margin-bottom: 24px;
+}
+#webcrumbs .mb-8 {
+  margin-bottom: 32px;
+}
+#webcrumbs .mr-1 {
+  margin-right: 4px;
+}
+#webcrumbs .mr-3 {
+  margin-right: 12px;
+}
+#webcrumbs .mt-6 {
+  margin-top: 24px;
+}
+#webcrumbs .block {
+  display: block;
+}
+#webcrumbs .inline-block {
+  display: inline-block;
+}
+#webcrumbs .flex {
+  display: flex;
+}
+#webcrumbs .grid {
+  display: grid;
+}
+#webcrumbs .hidden {
+  display: none;
+}
+#webcrumbs .h-4 {
+  height: 16px;
+}
+#webcrumbs .h-48 {
+  height: 192px;
+}
+#webcrumbs .h-64 {
+  height: 256px;
+}
+#webcrumbs .h-8 {
+  height: 32px;
+}
+#webcrumbs .h-full {
+  height: 100%;
+}
+#webcrumbs .min-h-screen {
+  min-height: 100vh;
+}
+#webcrumbs .w-48 {
+  width: 192px;
+}
+#webcrumbs .w-8 {
+  width: 32px;
+}
+#webcrumbs .w-full {
+  width: 100%;
+}
+#webcrumbs .max-w-3xl {
+  max-width: 48rem;
+}
+#webcrumbs .max-w-7xl {
+  max-width: 80rem;
+}
+#webcrumbs .max-w-md {
+  max-width: 28rem;
+}
+#webcrumbs .flex-shrink-0 {
+  flex-shrink: 0;
+}
+#webcrumbs .rotate-3 {
+  --tw-rotate: 3deg;
+}
+#webcrumbs .rotate-3,
+#webcrumbs .transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+    rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+#webcrumbs .animate-spin {
+  animation: spin 1s linear infinite;
+}
+#webcrumbs .cursor-pointer {
+  cursor: pointer;
+}
+#webcrumbs .grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+#webcrumbs .grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+#webcrumbs .flex-row {
+  flex-direction: row;
+}
+#webcrumbs .flex-col {
+  flex-direction: column;
+}
+#webcrumbs .flex-wrap {
+  flex-wrap: wrap;
+}
+#webcrumbs .items-center {
+  align-items: center;
+}
+#webcrumbs .justify-center {
+  justify-content: center;
+}
+#webcrumbs .justify-between {
+  justify-content: space-between;
+}
+#webcrumbs .gap-0 {
+  gap: 0;
+}
+#webcrumbs .gap-3 {
+  gap: 12px;
+}
+#webcrumbs .gap-4 {
+  gap: 16px;
+}
+#webcrumbs .gap-8 {
+  gap: 32px;
+}
+#webcrumbs .overflow-hidden {
+  overflow: hidden;
+}
+#webcrumbs .rounded {
+  border-radius: 12px;
+}
+#webcrumbs .rounded-full {
+  border-radius: 9999px;
+}
+#webcrumbs .rounded-lg {
+  border-radius: 24px;
+}
+#webcrumbs .rounded-md {
+  border-radius: 18px;
+}
+#webcrumbs .border {
+  border-width: 1px;
+}
+#webcrumbs .border-2 {
+  border-width: 2px;
+}
+#webcrumbs .border-b {
+  border-bottom-width: 1px;
+}
+#webcrumbs .border-b-2 {
+  border-bottom-width: 2px;
+}
+#webcrumbs .border-dashed {
+  border-style: dashed;
+}
+#webcrumbs .border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
+}
+#webcrumbs .border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity, 1));
+}
+#webcrumbs .border-primary-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(115 65 255 / var(--tw-border-opacity, 1));
+}
+#webcrumbs .border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
+}
+#webcrumbs .bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
+}
+#webcrumbs .bg-gray-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1));
+}
+#webcrumbs .bg-green-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity, 1));
+}
+#webcrumbs .bg-primary-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(233 229 255 / var(--tw-bg-opacity, 1));
+}
+#webcrumbs .bg-primary-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(115 65 255 / var(--tw-bg-opacity, 1));
+}
+#webcrumbs .bg-transparent {
+  background-color: transparent;
+}
+#webcrumbs .bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
+}
+#webcrumbs .bg-gradient-to-br {
+  background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+}
+#webcrumbs .bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+#webcrumbs .from-green-50 {
+  --tw-gradient-from: #f0fdf4 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgba(240, 253, 244, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+#webcrumbs .from-primary-500 {
+  --tw-gradient-from: #7341ff var(--tw-gradient-from-position);
+  --tw-gradient-to: rgba(115, 65, 255, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+#webcrumbs .from-red-50 {
+  --tw-gradient-from: #fef2f2 var(--tw-gradient-from-position);
+  --tw-gradient-to: hsla(0, 86%, 97%, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+#webcrumbs .from-yellow-50 {
+  --tw-gradient-from: #fefce8 var(--tw-gradient-from-position);
+  --tw-gradient-to: hsla(55, 92%, 95%, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+#webcrumbs .to-primary-600 {
+  --tw-gradient-to: #631bff var(--tw-gradient-to-position);
+}
+#webcrumbs .to-white {
+  --tw-gradient-to: #fff var(--tw-gradient-to-position);
+}
+#webcrumbs .object-cover {
+  object-fit: cover;
+}
+#webcrumbs .p-1 {
+  padding: 4px;
+}
+#webcrumbs .p-3 {
+  padding: 12px;
+}
+#webcrumbs .p-4 {
+  padding: 16px;
+}
+#webcrumbs .p-6 {
+  padding: 24px;
+}
+#webcrumbs .p-8 {
+  padding: 32px;
+}
+#webcrumbs .px-3 {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+#webcrumbs .px-4 {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+#webcrumbs .px-6 {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+#webcrumbs .py-1 {
+  padding-bottom: 4px;
+  padding-top: 4px;
+}
+#webcrumbs .py-12 {
+  padding-bottom: 48px;
+  padding-top: 48px;
+}
+#webcrumbs .py-3 {
+  padding-bottom: 12px;
+  padding-top: 12px;
+}
+#webcrumbs .text-center {
+  text-align: center;
+}
+#webcrumbs .text-2xl {
+  font-size: 24px;
+  line-height: 31.200000000000003px;
+}
+#webcrumbs .text-3xl {
+  font-size: 30px;
+  line-height: 36px;
+}
+#webcrumbs .text-4xl {
+  font-size: 36px;
+  line-height: 41.4px;
+}
+#webcrumbs .text-lg {
+  font-size: 18px;
+  line-height: 27px;
+}
+#webcrumbs .text-sm {
+  font-size: 14px;
+  line-height: 21px;
+}
+#webcrumbs .text-xl {
+  font-size: 20px;
+  line-height: 28px;
+}
+#webcrumbs .text-xs {
+  font-size: 12px;
+  line-height: 19.200000000000003px;
+}
+#webcrumbs .font-bold {
+  font-weight: 700;
+}
+#webcrumbs .font-extrabold {
+  font-weight: 800;
+}
+#webcrumbs .font-medium {
+  font-weight: 500;
+}
+#webcrumbs .font-semibold {
+  font-weight: 600;
+}
+#webcrumbs .text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+}
+#webcrumbs .text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+}
+#webcrumbs .text-gray-600 {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+}
+#webcrumbs .text-gray-800 {
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity, 1));
+}
+#webcrumbs .text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity, 1));
+}
+#webcrumbs .text-green-500 {
+  --tw-text-opacity: 1;
+  color: rgb(34 197 94 / var(--tw-text-opacity, 1));
+}
+#webcrumbs .text-primary-100 {
+  --tw-text-opacity: 1;
+  color: rgb(233 229 255 / var(--tw-text-opacity, 1));
+}
+#webcrumbs .text-primary-600 {
+  --tw-text-opacity: 1;
+  color: rgb(99 27 255 / var(--tw-text-opacity, 1));
+}
+#webcrumbs .text-primary-800 {
+  --tw-text-opacity: 1;
+  color: rgb(70 7 208 / var(--tw-text-opacity, 1));
+}
+#webcrumbs .text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
+}
+#webcrumbs .text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+#webcrumbs .text-yellow-500 {
+  --tw-text-opacity: 1;
+  color: rgb(234 179 8 / var(--tw-text-opacity, 1));
+}
+#webcrumbs .shadow-lg {
+  --tw-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --tw-shadow-colored:
+    0 10px 15px -3px var(--tw-shadow-color),
+    0 4px 6px -4px var(--tw-shadow-color);
+}
+#webcrumbs .shadow-lg,
+#webcrumbs .shadow-md {
+  box-shadow:
+    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
+}
+#webcrumbs .shadow-md {
+  --tw-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --tw-shadow-colored:
+    0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+}
+#webcrumbs .shadow-xl {
+  --tw-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --tw-shadow-colored:
+    0 20px 25px -5px var(--tw-shadow-color),
+    0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow:
+    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
+}
+#webcrumbs .transition-colors {
+  transition-duration: 0.15s;
+  transition-property:
+    color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+#webcrumbs .transition-opacity {
+  transition-duration: 0.15s;
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+#webcrumbs .transition-shadow {
+  transition-duration: 0.15s;
+  transition-property: box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+#webcrumbs .transition-transform {
+  transition-duration: 0.15s;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+#webcrumbs .duration-200 {
+  transition-duration: 0.2s;
+}
+#webcrumbs .duration-300 {
+  transition-duration: 0.3s;
+}
+#webcrumbs {
+  font-family: Open Sans !important;
+  font-size: 16px !important;
+}
+#webcrumbs :is(.bg-primary-100) {
+  color: rgba(0, 0, 0, 0.9) !important;
+}
+#webcrumbs :is(.bg-primary-500) {
+  color: hsla(0, 0%, 100%, 0.9) !important;
+}
+#webcrumbs .hover\:rotate-0:hover {
+  --tw-rotate: 0deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+    rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+#webcrumbs .hover\:border-primary-300:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(183 169 255 / var(--tw-border-opacity, 1));
+}
+#webcrumbs .hover\:border-primary-400:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(148 120 255 / var(--tw-border-opacity, 1));
+}
+#webcrumbs .hover\:bg-primary-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 241 255 / var(--tw-bg-opacity, 1));
+}
+#webcrumbs .hover\:bg-primary-600:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(99 27 255 / var(--tw-bg-opacity, 1));
+}
+#webcrumbs .hover\:from-green-100:hover {
+  --tw-gradient-from: #dcfce7 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgba(220, 252, 231, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+#webcrumbs .hover\:from-red-100:hover {
+  --tw-gradient-from: #fee2e2 var(--tw-gradient-from-position);
+  --tw-gradient-to: hsla(0, 93%, 94%, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+#webcrumbs .hover\:from-yellow-100:hover {
+  --tw-gradient-from: #fef9c3 var(--tw-gradient-from-position);
+  --tw-gradient-to: hsla(55, 97%, 88%, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+#webcrumbs .hover\:opacity-95:hover {
+  opacity: 0.95;
+}
+#webcrumbs .hover\:shadow-lg:hover {
+  --tw-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --tw-shadow-colored:
+    0 10px 15px -3px var(--tw-shadow-color),
+    0 4px 6px -4px var(--tw-shadow-color);
+}
+#webcrumbs .hover\:shadow-lg:hover,
+#webcrumbs .hover\:shadow-xl:hover {
+  box-shadow:
+    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
+}
+#webcrumbs .hover\:shadow-xl:hover {
+  --tw-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --tw-shadow-colored:
+    0 20px 25px -5px var(--tw-shadow-color),
+    0 8px 10px -6px var(--tw-shadow-color);
+}
+@media (min-width: 640px) {
+  #webcrumbs .sm\:px-6 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+@media (min-width: 768px) {
+  #webcrumbs .md\:mb-0 {
+    margin-bottom: 0;
+  }
+  #webcrumbs .md\:mr-8 {
+    margin-right: 32px;
+  }
+  #webcrumbs .md\:w-1\/3 {
+    width: 33.333333%;
+  }
+  #webcrumbs .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  #webcrumbs .md\:flex-row {
+    flex-direction: row;
+  }
+  #webcrumbs .md\:border-b-0 {
+    border-bottom-width: 0;
+  }
+  #webcrumbs .md\:border-r {
+    border-right-width: 1px;
+  }
+}
+@media (min-width: 1024px) {
+  #webcrumbs .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  #webcrumbs .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  #webcrumbs .lg\:px-8 {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+</style><link rel="manifest" href="/manifest.json"><link rel="icon" href="https://cdn.webcrumbs.org/assets/images/landing/favicon.ico" /><link rel="apple-touch-icon" sizes="192x192" href="https://cdn.webcrumbs.org/assets/images/landing/logo192.png" /><link rel="apple-touch-icon" sizes="512x512" href="https://cdn.webcrumbs.org/assets/images/landing/logo512.png" /><meta name="theme-color" content="#ffffff"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Webcrumbs"></head><body><div id="webcrumbs"><div class="bg-gray-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8"> <div class="max-w-7xl mx-auto"> <div class="text-center mb-12"> <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Fruit Quality Detector</h1> <p class="text-xl text-gray-600 max-w-3xl mx-auto"></p> </div> <div class="bg-white rounded-lg shadow-xl overflow-hidden mb-12"> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0"> <div class="p-6 border-b md:border-b-0 md:border-r border-gray-200 bg-gradient-to-br from-green-50 to-white hover:from-green-100 transition-colors duration-300"> <div class="flex items-center mb-4"> <span class="material-symbols-outlined text-green-500 text-3xl mr-3">check_circle</span> <h2 class="text-2xl font-bold text-gray-800">Good Quality</h2> </div> <p class="text-gray-600 mb-4">Fruits that are fresh, without defects, and in optimal condition for consumption.</p> <div class="text-sm text-gray-500 mb-2"></div> <div class="relative h-48 rounded-md overflow-hidden hover:opacity-95 transition-opacity"> <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=800&amp;auto=format&amp;fit=crop&amp;q=80" alt="Good quality fruits" class="w-full h-full object-cover" data-keywords="fresh fruits, apples, good quality produce, healthy fruits"/> </div> </div> <div class="p-6 border-b md:border-b-0 md:border-r border-gray-200 bg-gradient-to-br from-red-50 to-white hover:from-red-100 transition-colors duration-300"> <div class="flex items-center mb-4"> <span class="material-symbols-outlined text-red-500 text-3xl mr-3">cancel</span> <h2 class="text-2xl font-bold text-gray-800">Bad Quality</h2> </div> <p class="text-gray-600 mb-4">Fruits that are rotten, spoiled, or unsuitable for consumption.</p> <div class="text-sm text-gray-500 mb-2"></div> <div class="relative h-48 rounded-md overflow-hidden hover:opacity-95 transition-opacity"> <img src="https://images.unsplash.com/photo-1655079342319-33193026ad61?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w3MzkyNDZ8MHwxfHNlYXJjaHwxfHxyb3R0ZW4lMjBmcnVpdHN8ZW58MHx8fHwxNzYxMjQwMzMzfDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="Bad quality fruits" class="w-full h-full object-cover" data-keywords="rotten fruits, spoiled banana, bad quality produce, fruit decay"/>
+</div> </div> <div class="p-6 bg-gradient-to-br from-yellow-50 to-white hover:from-yellow-100 transition-colors duration-300"> <div class="flex items-center mb-4"> <span class="material-symbols-outlined text-yellow-500 text-3xl mr-3">warning</span> <h2 class="text-2xl font-bold text-gray-800">Mixed Quality</h2> </div> <p class="text-gray-600 mb-4">Fruits that show partial defects or are in early stages of deterioration.</p> <div class="text-sm text-gray-500 mb-2"></div> <div class="relative h-48 rounded-md overflow-hidden hover:opacity-95 transition-opacity"> <img src="https://images.unsplash.com/photo-1421167418805-7f170a738eb4?w=800&amp;auto=format&amp;fit=crop&amp;q=80" alt="Mixed quality fruits" class="w-full h-full object-cover" data-keywords="partially damaged fruits, bruised apples, mixed quality produce, fruit bruising"/>
+</div> </div> </div> </div> <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12"> <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"> <h2 class="text-2xl font-bold text-gray-800 mb-4"></h2> <p class="text-gray-600 mb-4"></p> <p class="text-gray-600 mb-4"></p> </div> <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"> <h2 class="text-2xl font-bold text-gray-800 mb-4">Dataset Details</h2> <p class="text-gray-600 mb-4"> The dataset consists of 19,526 high-quality images from six different fruits: Apple, Banana, Guava, Lime, Orange, and Pomegranate, organized into three quality categories. </p> <div class="mt-6 grid grid-cols-3 gap-3"> <div class="bg-gray-50 p-3 rounded-md text-center hover:bg-primary-50 transition-colors"> <p class="font-medium text-gray-800">Apple</p> </div> <div class="bg-gray-50 p-3 rounded-md text-center hover:bg-primary-50 transition-colors"> <p class="font-medium text-gray-800">Banana</p> </div> <div class="bg-gray-50 p-3 rounded-md text-center hover:bg-primary-50 transition-colors"> <p class="font-medium text-gray-800">Guava</p> </div> <div class="bg-gray-50 p-3 rounded-md text-center hover:bg-primary-50 transition-colors"> <p class="font-medium text-gray-800">Lime</p> </div> <div class="bg-gray-50 p-3 rounded-md text-center hover:bg-primary-50 transition-colors"> <p class="font-medium text-gray-800">Orange</p> </div> <div class="bg-gray-50 p-3 rounded-md text-center hover:bg-primary-50 transition-colors"> <p class="font-medium text-gray-800">Pomegranate</p> </div> </div> <div class="mt-6"> <div class="w-full bg-gray-200 rounded-full h-4 mb-1"> <div class="bg-green-500 h-4 rounded-full" style="width:60%"></div> </div> <div class="flex justify-between text-xs text-gray-500"> <span>Good Quality: 11,664 (60%)</span> <span>Bad: 6,788 (35%)</span> <span>Mixed: 1,074 (5%)</span> </div> </div> </div> </div> <div class="bg-white p-8 rounded-lg shadow-lg mb-12"> <h2 class="text-2xl font-bold text-gray-800 mb-6">Model Architecture &amp; Performance</h2> <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8"> <div class="border border-gray-200 rounded-lg p-6 hover:border-primary-300 transition-colors"> <div class="flex items-center justify-between mb-4"> <h3 class="text-xl font-bold text-gray-800">InceptionV3</h3> <span class="px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-medium">94% Accuracy</span> </div> <p class="text-gray-600 mb-4"> A deep CNN architecture with 48 layers that uses inception modules to reduce the number of parameters. </p> <div class="flex items-center text-sm text-gray-500"> <span class="material-symbols-outlined mr-1 text-primary-600">data_object</span> <span>Training: 94% | Validation: 94%</span> </div> </div> <div class="border border-gray-200 rounded-lg p-6 hover:border-primary-300 transition-colors"> <div class="flex items-center justify-between mb-4"> <h3 class="text-xl font-bold text-gray-800">MobileNetV2</h3> <span class="px-3 py-1 bg-primary-100 text-primary-800 rounded-full text-sm font-medium">98% Accuracy</span> </div> <p class="text-gray-600 mb-4"> A lightweight CNN architecture designed for mobile and edge devices with inverted residuals and linear bottlenecks. </p> <div class="flex items-center text-sm text-gray-500"> <span class="material-symbols-outlined mr-1 text-primary-600">data_object</span> <span>Training: 97% | Validation: 98%</span> </div> </div> </div> <div class="grid grid-cols-1 md:grid-cols-2 gap-8"> <div class="p-4 bg-gray-50 rounded-lg"> <h3 class="text-lg font-semibold text-gray-800 mb-3">Accuracy Comparison</h3> <div class="h-64 w-full"> <div data-chart="chart_0"></div> </div> </div> <div class="p-4 bg-gray-50 rounded-lg"> <h3 class="text-lg font-semibold text-gray-800 mb-3">Loss Comparison</h3> <div class="h-64 w-full"> <div data-chart="chart_1"></div> </div> </div> </div> </div> <div class="bg-white p-8 rounded-lg shadow-lg mb-12"> <h2 class="text-2xl font-bold text-gray-800 mb-6">Try Our Fruit Quality Analyzer</h2> <div class="max-w-md mx-auto"> <div class="flex items-center justify-center p-8 border-2 border-dashed border-gray-300 rounded-lg hover:border-primary-400 transition-colors duration-200"> <div class="text-center"> <span class="material-symbols-outlined text-4xl text-gray-400 mb-4 block">upload</span> <p class="text-sm text-gray-600 mb-4">Upload fruit image to analyze freshness</p> <input type="file" accept="image/*" class="hidden" id="fruit-upload"/> <label for="fruit-upload" class="cursor-pointer bg-primary-500 text-white px-6 py-3 rounded-lg hover:bg-primary-600 transition-colors duration-200 inline-block"> Choose Image </label> </div> </div> <div class="mt-6 text-center"> <img id="fruit-preview" class="hidden mx-auto w-48 h-48 object-cover rounded-lg border-2 border-gray-200 mb-4" alt="Fruit preview"/> <div id="loading" class="hidden"> <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500 mx-auto mb-2"></div> <p class="text-gray-600">Analyzing fruit quality...</p> </div> <div id="analysis-result" class="hidden text-lg font-medium"></div> </div> </div> </div> <div class="bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg shadow-xl p-8 text-white"> <div class="flex flex-col md:flex-row items-center justify-between"> <div class="mb-6 md:mb-0 md:mr-8"> <h2 class="text-3xl font-bold mb-4">Ready to implement advanced fruit classification?</h2> <p class="text-primary-100 mb-6">Our deep learning models provide accurate and efficient fruit quality detection to streamline your agricultural processes.</p> <div class="flex flex-wrap gap-4"> <button class="bg-white text-primary-600 px-6 py-3 rounded-lg font-medium hover:bg-primary-50 transition-colors shadow-md hover:shadow-lg"> Request Demo </button> <button class="bg-transparent border border-white px-6 py-3 rounded-lg font-medium hover:bg-primary-600 transition-colors"> Learn More </button> </div> </div> <div class="flex-shrink-0 w-full md:w-1/3"> <div class="bg-white p-1 rounded-lg transform rotate-3 hover:rotate-0 transition-transform duration-300"> <img src="https://images.unsplash.com/photo-1577234286642-fc512a5f8f11?w=800&amp;auto=format&amp;fit=crop&amp;q=80" alt="Fruit quality assessment" class="rounded w-full h-48 object-cover" keywords="fruit classification, AI, machine learning, fruit quality assessment"/> </div> </div> </div> </div> </div> </div></div><script src="https://cdn.jsdelivr.net/npm/apexcharts"></script><script>new ApexCharts(document.querySelector('[data-chart="chart_0"]'),{"chart":{"type":"line","width":"100%","height":"260","toolbar":{"show":false},"zoom":{"enabled":false}},"colors":["#7341ff","#999999"],"dataLabels":{"enabled":false},"stroke":{"curve":"smooth","width":2},"xaxis":{"categories":["Epoch 5","Epoch 10","Epoch 15","Epoch 20","Epoch 25","Epoch 30"]},"tooltip":{"theme":"light"},"grid":{"borderColor":"#e0e0e0"},"series":[{"name":"InceptionV3","data":[0.65,0.78,0.85,0.89,0.92,0.94]},{"name":"MobileNetV2","data":[0.7,0.82,0.89,0.93,0.95,0.98]}]}).render();new ApexCharts(document.querySelector('[data-chart="chart_1"]'),{"chart":{"type":"line","width":"100%","height":"260","toolbar":{"show":false},"zoom":{"enabled":false}},"colors":["#7341ff","#999999"],"dataLabels":{"enabled":false},"stroke":{"curve":"smooth","width":2},"xaxis":{"categories":["Epoch 5","Epoch 10","Epoch 15","Epoch 20","Epoch 25","Epoch 30"]},"tooltip":{"theme":"light"},"grid":{"borderColor":"#e0e0e0"},"series":[{"name":"InceptionV3","data":[0.95,0.65,0.45,0.28,0.18,0.15]},{"name":"MobileNetV2","data":[0.85,0.55,0.35,0.18,0.08,0.05]}]}).render();</script> </body></html>
