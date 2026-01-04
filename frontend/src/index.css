@@ -1,0 +1,175 @@
+:root{
+  --bg:#0f1724;
+  --card:#0b1220;
+  --accent:#07c;
+  --muted:#9aa6b2;
+  --glass: rgba(255,255,255,0.03);
+}
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  /* pink variant with similar contrast/shade as the original blue gradient */
+  background:linear-gradient(180deg,#2b042a 0%, #5a0f3a 100%);
+  color:#e6eef6;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+
+/* subtle animated ripple overlays */
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  mix-blend-mode:overlay;
+}
+
+body::before{
+  background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.03), transparent 18%), radial-gradient(circle at 80% 70%, rgba(255,255,255,0.02), transparent 14%);
+  opacity:0.9;
+  transform-origin:center;
+  animation: rippleScale 10s ease-in-out infinite;
+}
+
+body::after{
+  background: radial-gradient(circle at 50% 10%, rgba(255,255,255,0.02), transparent 12%), radial-gradient(circle at 10% 80%, rgba(255,255,255,0.015), transparent 10%);
+  opacity:0.7;
+  transform-origin:center;
+  animation: rippleMove 14s linear infinite;
+}
+
+@keyframes rippleScale{
+  0%{transform:scale(1);opacity:0.6}
+  50%{transform:scale(1.03);opacity:0.95}
+  100%{transform:scale(1);opacity:0.6}
+}
+
+@keyframes rippleMove{
+  0%{background-position:0% 0%, 100% 100%;opacity:0.7}
+  50%{background-position:30% 20%, 70% 60%;opacity:1}
+  100%{background-position:0% 0%, 100% 100%;opacity:0.7}
+}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:transparent}
+.brand{font-weight:700;color:var(--accent);text-decoration:none;font-size:1.1rem}
+.topbar nav a{color:var(--muted);margin-left:12px;text-decoration:none}
+.app main{display:flex;align-items:center;justify-content:center;padding:24px}
+.card{width:780px;max-width:92%;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08));backdrop-filter: blur(6px);border:1px solid rgba(255,255,255,0.03);border-radius:14px;padding:28px;box-shadow:0 10px 40px rgba(2,6,23,0.6)}
+.card h1{margin:0 0 12px}
+.mode{margin-top:18px;padding:12px;border-radius:8px;background:var(--glass)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:transparent;color:var(--accent);border:1px solid rgba(255,255,255,0.06);text-decoration:none;cursor:pointer;transition:transform .12s ease, box-shadow .12s ease}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(2,6,23,0.5)}
+.btn.primary{background:linear-gradient(90deg,var(--accent),#3aa0ff);color:#051024;border:none}
+.btn svg{opacity:0.95}
+.btn-label{font-weight:700}
+.upload-form{display:flex;gap:12px;align-items:center;margin-top:8px}
+.result-img{max-width:100%;border-radius:8px;margin-top:12px}
+.error{color:#ff7b7b}
+
+/* Result page */
+.result-media{display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));padding:12px;border-radius:10px}
+.result-actions{display:flex;gap:10px;margin-top:14px}
+.result-img{width:100%;height:auto;border-radius:10px}
+
+/* Home page animated fruits background */
+.home-page{position:relative;overflow:hidden;padding:36px 24px 48px;min-height:calc(100vh - 72px);display:flex;align-items:center;justify-content:center}
+.home-page .card{position:relative;z-index:3}
+.fruit-bg{position:absolute;inset:0;pointer-events:none;z-index:0}
+.fruit{position:absolute;top:0;font-size:38px;opacity:0.95;transform-origin:center center;filter:drop-shadow(0 8px 18px rgba(2,6,23,0.45));will-change:transform}
+
+@keyframes floatUp {
+  0%{transform:translateY(0) rotate(0) scale(1);opacity:1}
+  50%{transform:translateY(-45vh) rotate(20deg) scale(1.08);opacity:0.95}
+  100%{transform:translateY(-120vh) rotate(360deg) scale(0.98);opacity:0.85}
+}
+
+.fruit-0{animation:floatUp 14s linear infinite; font-size:44px}
+.fruit-1{animation:floatUp 11s linear -2s infinite; font-size:36px}
+.fruit-2{animation:floatUp 16s linear -4s infinite; font-size:40px}
+.fruit-3{animation:floatUp 13s linear -1s infinite; font-size:34px}
+.fruit-4{animation:floatUp 18s linear -3s infinite; font-size:46px}
+.fruit-5{animation:floatUp 12s linear -5s infinite; font-size:32px}
+
+/* subtle horizontal sway */
+@keyframes sway { 0% { transform: translateX(0) } 50% { transform: translateX(18px) } 100% { transform: translateX(0) } }
+.fruit{animation-name: floatUp, sway; animation-duration: var(--d, 14s), 6s; animation-timing-function: linear, ease-in-out; animation-iteration-count: infinite, infinite}
+
+/* New motion presets */
+.move1{animation-name: path1, sway;}
+.move2{animation-name: path2, sway;}
+.move3{animation-name: path3, sway;}
+.move4{animation-name: path4, sway;}
+
+@keyframes path1{
+  0% { transform: translate3d(0,0,0) rotate(0deg) }
+  25% { transform: translate3d(4vw,-20vh,0) rotate(10deg) }
+  50% { transform: translate3d(-6vw,-60vh,0) rotate(-8deg) }
+  75% { transform: translate3d(6vw,-95vh,0) rotate(12deg) }
+  100% { transform: translate3d(0,-140vh,0) rotate(360deg) }
+}
+
+@keyframes path2{
+  0% { transform: translate3d(0,0,0) rotate(0deg) }
+  20% { transform: translate3d(-6vw,-12vh,0) rotate(-12deg) }
+  40% { transform: translate3d(4vw,-60vh,0) rotate(8deg) }
+  60% { transform: translate3d(-3vw,-110vh,0) rotate(-6deg) }
+  100% { transform: translate3d(0,-180vh,0) rotate(360deg) }
+}
+
+@keyframes path3{
+  0% { transform: translate3d(0,0,0) rotate(0deg) }
+  30% { transform: translate3d(6vw,-30vh,0) rotate(6deg) }
+  60% { transform: translate3d(-10vw,-110vh,0) rotate(-14deg) }
+  100% { transform: translate3d(0,-200vh,0) rotate(360deg) }
+}
+
+@keyframes path4{
+  0% { transform: translate3d(0,0,0) rotate(0deg) }
+  25% { transform: translate3d(-3vw,-28vh,0) rotate(-8deg) }
+  50% { transform: translate3d(10vw,-72vh,0) rotate(10deg) }
+  75% { transform: translate3d(-6vw,-140vh,0) rotate(-6deg) }
+  100% { transform: translate3d(0,-240vh,0) rotate(360deg) }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .fruit, .fruit * { animation: none !important; transition: none !important }
+}
+
+
+/* Live feed styles */
+.live-wrap{display:flex;flex-direction:column;gap:12px}
+.grid{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:start}
+.feed{display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:10px;border-radius:8px;min-height:360px;position:relative}
+.mjpeg{max-width:100%;border-radius:8px;box-shadow:0 10px 40px rgba(2,6,23,0.6);width:100%;height:auto;object-fit:contain}
+.controls{display:flex;gap:10px;margin-top:8px}
+.muted{color:var(--muted);margin:6px 0 12px}
+
+.sidebar{display:flex;flex-direction:column;gap:12px}
+.panel{background:rgba(255,255,255,0.02);padding:12px;border-radius:8px}
+.live-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.status-pill{padding:6px 10px;border-radius:999px;font-weight:600}
+.status-pill.ok{background:linear-gradient(90deg,#19c37d,#2bbf8b);color:#04120a}
+.status-pill.bad{background:rgba(255,255,255,0.02);color:var(--muted);border:1px solid rgba(255,255,255,0.03)}
+
+/* pulse effect for connected status */
+.pulse{position:relative}
+.pulse::after{content:'';position:absolute;inset:-6px;border-radius:999px;box-shadow:0 0 0 6px rgba(27, 223, 139, 0.06);animation:pulse 2s infinite}
+@keyframes pulse{0%{transform:scale(0.96);opacity:0.9}50%{transform:scale(1);opacity:0.6}100%{transform:scale(0.96);opacity:0.9}}
+
+/* watermark */
+.feed::after{content:'Freshness';position:absolute;right:18px;bottom:18px;font-size:12px;color:rgba(255,255,255,0.06);transform:rotate(-12deg);pointer-events:none}
+
+/* spinner */
+.feed-overlay{position:absolute;display:flex;align-items:center;justify-content:center;inset:0;background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.6));border-radius:8px}
+.spinner{width:48px;height:48px;border-radius:50%;border:6px solid rgba(255,255,255,0.06);border-top-color:var(--accent);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* responsive */
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .sidebar{order:2}
+}

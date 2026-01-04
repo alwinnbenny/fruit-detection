@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Detection</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Select Detection Mode</h1>
+      
+      <h3>1. Live Feed Detection</h3>
+      <a href="/live_feed" class="btn btn-primary">Start Live Feed Detection</a>
+      
+      <h3>2. Image Upload Detection</h3>
+      <form action="/detect_image" method="post" enctype="multipart/form-data">
+        <label for="image">Upload Image:</label>
+        <input type="file" id="image" name="image">
+        <button type="submit">Detect</button>
+      </form>
+    </div>
+  </body>
+</html>

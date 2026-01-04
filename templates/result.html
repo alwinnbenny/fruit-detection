@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Detection Result</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Detection Result</h1>
+      <!-- Use the unique_id for cache busting -->
+      <img src="{{ url_for('static', filename='uploads/' + result_image) }}?{{ unique_id }}" width="100%">
+    </div>
+  </body>
+</html>

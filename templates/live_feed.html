@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Live Feed Detection</title>
+    <style>
+      .video-container {
+        width: 640px;
+        height: 640px;
+        margin: 0 auto; /* Center the video container */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures the image fills the container */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 style="text-align: center;">Live Feed Detection</h1>
+      <div class="video-container">
+        <img src="{{ url_for('video_feed') }}">
+      </div>
+    </div>
+  </body>
+</html>
