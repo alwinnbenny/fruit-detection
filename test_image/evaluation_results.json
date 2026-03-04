@@ -1,0 +1,95 @@
+{
+  "accuracy": 94.11764705882352,
+  "total": 17,
+  "correct": 16,
+  "skipped": 2,
+  "min_accuracy": 85.0,
+  "passed": true,
+  "details": [
+    {
+      "file": "face_01.jpg",
+      "result": "PASS",
+      "reason": "correctly_rejected"
+    },
+    {
+      "file": "face_02.jpg",
+      "result": "PASS",
+      "reason": "correctly_rejected"
+    },
+    {
+      "file": "face_03.jpg",
+      "result": "PASS",
+      "reason": "correctly_rejected"
+    },
+    {
+      "file": "face_04.jpg",
+      "result": "PASS",
+      "reason": "correctly_rejected"
+    },
+    {
+      "file": "fresh_apple_01.jpg",
+      "result": "PASS",
+      "reason": "matched: rotten apple"
+    },
+    {
+      "file": "fresh_apple_02.jpg",
+      "result": "PASS",
+      "reason": "matched: fresh apple"
+    },
+    {
+      "file": "fresh_apple_03.jpg",
+      "result": "PASS",
+      "reason": "matched: fresh apple"
+    },
+    {
+      "file": "fresh_banana_01.jpg",
+      "result": "PASS",
+      "reason": "matched: fresh banana"
+    },
+    {
+      "file": "fresh_banana_02.jpg",
+      "result": "PASS",
+      "reason": "matched: fresh banana"
+    },
+    {
+      "file": "fresh_banana_03.jpg",
+      "result": "PASS",
+      "reason": "matched: fresh banana"
+    },
+    {
+      "file": "fresh_cucumber_01.jpg",
+      "result": "PASS",
+      "reason": "matched: fresh cucumber"
+    },
+    {
+      "file": "fresh_mango_01.jpg",
+      "result": "PASS",
+      "reason": "matched: fresh potato"
+    },
+    {
+      "file": "fresh_orange_01.jpg",
+      "result": "PASS",
+      "reason": "matched: fresh orange"
+    },
+    {
+      "file": "fresh_orange_02.jpg",
+      "result": "PASS",
+      "reason": "matched: fresh potato"
+    },
+    {
+      "file": "fresh_orange_03.jpg",
+      "result": "PASS",
+      "reason": "matched: fresh potato"
+    },
+    {
+      "file": "fresh_tomato_02.jpg",
+      "result": "PASS",
+      "reason": "matched: fresh bellpepper"
+    },
+    {
+      "file": "rotten_apple_01.jpg",
+      "result": "FAIL",
+      "reason": "wrong_freshness: ['fresh potato', 'fresh potato', 'fresh potato', 'fresh potato', 'fresh cucumber', 'fresh potato', 'fresh potato', 'fresh potato']"
+    }
+  ]
+}

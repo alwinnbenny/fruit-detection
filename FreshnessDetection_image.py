@@ -7,6 +7,19 @@ rf = Roboflow(api_key="RBMCiagFraeIHPvptwcS")
 project = rf.workspace().project("freshness-fruits-and-vegetables")
 model = project.version(7).model
 
+# --- Post-processing filters ---
+CONFIDENCE_THRESHOLD = 45
+
+VALID_CLASSES = {
+    'fresh apple', 'rotten apple',
+    'fresh banana', 'rotten banana',
+    'fresh orange', 'rotten orange',
+    'fresh potato', 'rotten potato',
+    'fresh cucumber', 'rotten cucumber',
+    'fresh bellpepper', 'rottenbellpepper',
+    'fresh carrot', 'rotten carrot',
+}
+
 # Path to the directory containing images
 image_dir = "test_image"
 
@@ -26,10 +39,16 @@ for image_file in image_files:
 
     try:
         # Perform inference on the image
-        results = model.predict(image, confidence=40, overlap=30).json()
+        results = model.predict(image, confidence=CONFIDENCE_THRESHOLD, overlap=30).json()
+
+        # Filter predictions by class whitelist
+        predictions = [
+            p for p in results['predictions']
+            if p['class'].lower().strip() in VALID_CLASSES
+        ]
 
         # Extract bounding boxes and labels from the predictions
-        for prediction in results['predictions']:
+        for prediction in predictions:
             x, y, w, h = (
                 prediction['x'], 
                 prediction['y'], 

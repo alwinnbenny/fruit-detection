@@ -10,6 +10,19 @@ export default defineConfig({
         target: 'http://localhost:5000',
         changeOrigin: true
       },
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true
+      },
+      '/static': {
+        target: 'http://localhost:5000',
+        changeOrigin: true
+      },
+      '/socket.io': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        ws: true
+      },
       '/live_feed': {
         target: 'http://localhost:5000',
         changeOrigin: true
