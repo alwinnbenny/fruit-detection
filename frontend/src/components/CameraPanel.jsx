@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
+import ConfidenceInfoButton from './ConfidenceInfoButton'
 
 export default function CameraPanel() {
     const imgRef = useRef(null)
@@ -110,6 +111,7 @@ export default function CameraPanel() {
                     </div>
                 </div>
             </div>
+            <ConfidenceInfoButton />
         </div>
     )
 }

@@ -8,7 +8,7 @@
       .video-container {
         width: 640px;
         height: 640px;
-        margin: 0 auto; /* Center the video container */
+        margin: 0 auto;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -16,8 +16,31 @@
       img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Ensures the image fills the container */
+        object-fit: cover;
       }
+      .info-fab{position:fixed;bottom:28px;right:28px;z-index:200;width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,#8b5cf6,#6366f1,#3b82f6);box-shadow:0 4px 24px rgba(99,102,241,.45);display:flex;align-items:center;justify-content:center;transition:transform .25s}
+      .info-fab:hover{transform:scale(1.12)}
+      .info-fab-icon{font-family:Georgia,serif;font-size:1.5rem;font-weight:700;font-style:italic;color:#fff}
+      .info-modal-backdrop{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px}
+      .info-modal-backdrop.open{display:flex}
+      .info-modal{position:relative;width:100%;max-width:520px;max-height:85vh;overflow-y:auto;background:rgba(18,18,40,.95);backdrop-filter:blur(24px);border:1px solid rgba(139,92,246,.25);border-radius:20px;padding:32px;box-shadow:0 24px 80px rgba(0,0,0,.6);color:#f0f0f8;font-family:system-ui,-apple-system,sans-serif}
+      .info-modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.05);color:#8b92a8;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s}
+      .info-modal-close:hover{background:rgba(255,255,255,.1);color:#f0f0f8}
+      .info-modal h2{text-align:center;font-size:1.3rem;font-weight:800;margin-bottom:20px}
+      .info-modal p{color:#8b92a8;font-size:.9rem;line-height:1.65;margin-bottom:14px}
+      .info-modal h3{font-size:1rem;font-weight:700;margin:20px 0 14px;color:#f0f0f8}
+      .clevel{padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.08);margin-bottom:10px}
+      .clevel .bar{display:block;width:100%;height:4px;border-radius:2px;margin-bottom:10px}
+      .clevel.high .bar{background:linear-gradient(90deg,#34d399,#10b981)}
+      .clevel.med .bar{background:linear-gradient(90deg,#fbbf24,#f59e0b)}
+      .clevel.low .bar{background:linear-gradient(90deg,#fb923c,#f97316)}
+      .clevel strong{color:#f0f0f8;font-size:.9rem}
+      .clevel span.label{color:#8b92a8;font-size:.8rem;float:right}
+      .clevel p{font-size:.825rem!important;color:#4a5068!important;margin-bottom:0!important}
+      .tip-box{display:flex;gap:10px;margin-top:18px;padding:14px 16px;border-radius:12px;background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.15)}
+      .tip-box p{font-size:.825rem!important;margin-bottom:0!important}
+      .got-it{display:block;width:100%;margin-top:24px;padding:12px;border:none;border-radius:12px;background:linear-gradient(135deg,#8b5cf6,#6366f1,#3b82f6);color:#fff;font-size:.95rem;font-weight:700;cursor:pointer}
+      .got-it:hover{opacity:.9}
     </style>
   </head>
   <body>
@@ -27,5 +50,33 @@
         <img src="{{ url_for('video_feed') }}">
       </div>
     </div>
+
+    <!-- Info FAB -->
+    <button class="info-fab" onclick="document.getElementById('infoModal').classList.add('open')" title="What is a confidence score?" aria-label="More info about confidence scores">
+      <span class="info-fab-icon">i</span>
+    </button>
+
+    <!-- Info Modal -->
+    <div class="info-modal-backdrop" id="infoModal" onclick="this.classList.remove('open')">
+      <div class="info-modal" onclick="event.stopPropagation()">
+        <button class="info-modal-close" onclick="document.getElementById('infoModal').classList.remove('open')">&times;</button>
+        <div style="text-align:center;font-size:2.5rem;margin-bottom:12px">📊</div>
+        <h2>Understanding Confidence Scores</h2>
+        <p>A <strong>confidence score</strong> tells you how sure the AI model is about its prediction. It's shown as a percentage next to each detected item.</p>
+        <p>For example, if the model says <em>"Fresh Apple: 92%"</em>, it means the AI is 92% confident that the item is a fresh apple.</p>
+        <h3>What do the scores mean?</h3>
+        <div class="clevel high"><span class="bar"></span><strong>90% – 100%</strong><span class="label">Very High Confidence</span><p>The model is almost certain. You can strongly trust this result.</p></div>
+        <div class="clevel med"><span class="bar"></span><strong>70% – 89%</strong><span class="label">High Confidence</span><p>A reliable prediction with a small chance of error.</p></div>
+        <div class="clevel low"><span class="bar"></span><strong>45% – 69%</strong><span class="label">Moderate Confidence</span><p>The model's best guess. Can happen with blurry images or unusual angles.</p></div>
+        <div class="tip-box"><span>💡</span><p><strong>Tip:</strong> For best results, use well-lit, clear photos with the item clearly visible. Predictions below 45% are automatically filtered out.</p></div>
+        <button class="got-it" onclick="document.getElementById('infoModal').classList.remove('open')">Got it!</button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') document.getElementById('infoModal').classList.remove('open');
+      });
+    </script>
   </body>
 </html>

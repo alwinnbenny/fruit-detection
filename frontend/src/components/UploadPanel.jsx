@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import ConfidenceInfoButton from './ConfidenceInfoButton'
 
 export default function UploadPanel() {
   const [file, setFile] = useState(null)
@@ -143,6 +144,22 @@ export default function UploadPanel() {
         {/* Result */}
         {result && resultSrc && (
           <div className="result-area">
+            {result.detection_count === 0 && (
+              <div className="no-detection-warning">
+                <div className="no-detection-icon">⚠️</div>
+                <div className="no-detection-content">
+                  <h3>No fruit or vegetable detected</h3>
+                  <p>The AI could not identify any fruit or vegetable in this image. This may be because:</p>
+                  <ul>
+                    <li>The image does not contain a supported fruit or vegetable</li>
+                    <li>The image quality is too low or blurry</li>
+                    <li>The item is too far away or poorly lit</li>
+                    <li>The item is at an unusual angle or partially hidden</li>
+                  </ul>
+                  <p>Try uploading a clearer, well-lit photo with the item clearly visible.</p>
+                </div>
+              </div>
+            )}
             <div className="result-image-wrap">
               <img src={resultSrc} alt="detection result" />
             </div>
@@ -160,6 +177,7 @@ export default function UploadPanel() {
           </div>
         )}
       </div>
+      <ConfidenceInfoButton />
     </div>
   )
 }

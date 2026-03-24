@@ -173,12 +173,14 @@ def detect_on_image(image_path):
         # Put the label above the bounding box
         cv2.putText(image, label, (x_min, y_min - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
+    detection_count = len(predictions)
+
     # Save the result image with a unique filename
     result_filename = f'result_{uuid.uuid4().hex}.jpg'
     result_image_path = os.path.join(UPLOAD_FOLDER, result_filename)
     cv2.imwrite(result_image_path, image)
     
-    return result_image_path
+    return result_image_path, detection_count
 
 # Route for homepage with detection options
 @app.route('/')
@@ -205,7 +207,7 @@ def detect_image():
         file.save(image_path)
         
         # Perform detection on the image
-        result_image_path = detect_on_image(image_path)
+        result_image_path, detection_count = detect_on_image(image_path)
         result_image_filename = os.path.basename(result_image_path)  # Get the filename only
         os.remove(image_path)  # Optionally remove the uploaded image after processing
         
@@ -220,11 +222,12 @@ def detect_image():
             return jsonify({
                 'result_image': result_image_filename,
                 'image_url': image_url,
-                'unique_id': unique_id
+                'unique_id': unique_id,
+                'detection_count': detection_count
             })
 
         # Render the result page with the processed image and UUID for regular browser form posts
-        return render_template('result.html', result_image=result_image_filename, unique_id=unique_id)
+        return render_template('result.html', result_image=result_image_filename, unique_id=unique_id, detection_count=detection_count)
 
 # API endpoint for detecting a single frame (used by client-side webcam)
 @app.route('/api/detect_frame', methods=['POST'])
@@ -313,39 +316,54 @@ def generate_live_feed():
                 print(f"Detection error: {e}")
         
         # Draw cached predictions on EVERY frame
-        for prediction in cached_predictions:
-            x, y, w, h = (
-                prediction['x'], 
-                prediction['y'], 
-                prediction['width'], 
-                prediction['height']
-            )
-            class_name = prediction['class']
-            confidence = prediction['confidence']
-            is_fresh = class_name.lower().startswith('fresh')
-            color = (0, 200, 80) if is_fresh else (0, 0, 230)  # Green or Red (BGR)
-            
-            # Calculate bounding box coordinates
-            x_min = int(x - w / 2)
-            y_min = int(y - h / 2)
-            x_max = int(x + w / 2)
-            y_max = int(y + h / 2)
-            
-            # Draw the bounding box
-            cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), color, 2)
-            
-            # Semi-transparent fill
+        if cached_predictions:
+            for prediction in cached_predictions:
+                x, y, w, h = (
+                    prediction['x'], 
+                    prediction['y'], 
+                    prediction['width'], 
+                    prediction['height']
+                )
+                class_name = prediction['class']
+                confidence = prediction['confidence']
+                is_fresh = class_name.lower().startswith('fresh')
+                color = (0, 200, 80) if is_fresh else (0, 0, 230)  # Green or Red (BGR)
+                
+                # Calculate bounding box coordinates
+                x_min = int(x - w / 2)
+                y_min = int(y - h / 2)
+                x_max = int(x + w / 2)
+                y_max = int(y + h / 2)
+                
+                # Draw the bounding box
+                cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), color, 2)
+                
+                # Semi-transparent fill
+                overlay = frame.copy()
+                cv2.rectangle(overlay, (x_min, y_min), (x_max, y_max), color, -1)
+                cv2.addWeighted(overlay, 0.1, frame, 0.9, 0, frame)
+                
+                # Create label with class and confidence score
+                label = f"{class_name}: {confidence:.0%}"
+                (tw, th), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.55, 2)
+                
+                # Label background
+                cv2.rectangle(frame, (x_min, y_min - th - 10), (x_min + tw + 8, y_min), color, -1)
+                cv2.putText(frame, label, (x_min + 4, y_min - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 2)
+        elif frame_count > 1:
+            # Show warning overlay when no fruit/vegetable is detected
+            warn_msg = "No fruit or vegetable detected"
+            warn_sub = "Try pointing the camera at a fruit or vegetable"
+            (tw, th), _ = cv2.getTextSize(warn_msg, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
+            (tw2, th2), _ = cv2.getTextSize(warn_sub, cv2.FONT_HERSHEY_SIMPLEX, 0.45, 1)
+            # Semi-transparent banner at top
             overlay = frame.copy()
-            cv2.rectangle(overlay, (x_min, y_min), (x_max, y_max), color, -1)
-            cv2.addWeighted(overlay, 0.1, frame, 0.9, 0, frame)
-            
-            # Create label with class and confidence score
-            label = f"{class_name}: {confidence:.0%}"
-            (tw, th), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.55, 2)
-            
-            # Label background
-            cv2.rectangle(frame, (x_min, y_min - th - 10), (x_min + tw + 8, y_min), color, -1)
-            cv2.putText(frame, label, (x_min + 4, y_min - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 2)
+            cv2.rectangle(overlay, (0, 0), (640, th + th2 + 40), (0, 0, 180), -1)
+            cv2.addWeighted(overlay, 0.6, frame, 0.4, 0, frame)
+            cx = (640 - tw) // 2
+            cx2 = (640 - tw2) // 2
+            cv2.putText(frame, warn_msg, (cx, th + 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+            cv2.putText(frame, warn_sub, (cx2, th + th2 + 24), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (200, 200, 255), 1)
         
         # Encode the frame into JPEG format
         ret, buffer = cv2.imencode('.jpg', frame)
